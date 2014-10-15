@@ -1,0 +1,86 @@
+/* main styles
+---------------------------------- */
+.featurette-heading {
+    margin: 40px 0;
+}
+.add-form {
+    display: none;
+}
+#error-log {
+    border: 1px solid #d9534f;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.hide-el {
+    display: none;
+}
+.wish {
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+}
+.edit {
+    cursor: pointer;
+    display: inline;
+    width:24px;
+    height:24px;
+    float:right;
+    border: none;
+    padding:0px;
+    margin:5px;
+    background: url(../img/edit24.jpg) no-repeat;
+}
+.delete{
+    cursor: pointer;
+    display: inline;
+    width:24px;
+    height:24px;
+    float:right;
+    border: none;
+    padding:0px;
+    margin:5px;
+    background: url(../img/delete24.jpg) no-repeat;
+}
+.capitalize
+{
+    text-transform: capitalize;
+}
+.shade {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:  1920px;
+    height: 1080px;
+    opacity: 0.5;
+    background-color: #000000;
+    z-index: 9;
+}
+.editForm{
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    top: 20%;
+    left: 30%;
+    width: 450px;
+    height: 450px;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+}
+/* misc.
+---------------------------------- */
+a img {
+    border: none;
+}
+
+/* self-clear floats */
+.group:after {
+    content: ".";
+    display: block;
+    height:0;
+    clear: both;
+    visibility: hidden;
+}
