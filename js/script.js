@@ -13,7 +13,7 @@ $(function() {
         console.warn('Your browser dosent support localStorage');
     }
 
-    //Add wish form  slider
+    //Add wish form (slider)
    $('#slide-form').on('click', function () {
        $('.add-form').slideToggle('slow');
        testingFillForm();
@@ -72,6 +72,7 @@ $(function() {
         }
     }
 
+    //all validatin logic
     function checkFields (wish) {
         var regexp;
 
@@ -246,9 +247,10 @@ $(function() {
         $('#tarea').val('');
     }
 
+    //func for quic testing (remove in release ver)
     function testingFillForm () {
-        $('#input-name').val('Valik');
-        $('#input-email').val('pri@luki.ru');
+        $('#input-name').val('Valentin');
+        $('#input-email').val('valkis09@mail.ru');
         $('#input-telnum').val('(999)333-12-34');
         $('#tarea').val('My wish');
     }
