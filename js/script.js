@@ -164,7 +164,7 @@ $(function() {
         newItem.appendChild(editEl);
         newItem.appendChild(delEl);
 
-        newItem.appendChild(document.createTextNode(wish.newWish));
+        newItem.appendChild(document.createTextNode(truncate(wish.newWish, 13)));
         newItem.className = 'col-lg-2 col-md-3 col-sm-4 col-xs-6 wish';
 
         if (wish.id) {
@@ -174,6 +174,14 @@ $(function() {
         wishContainer.insertBefore(newItem, firstDiv);
 
         return newItem;
+    }
+
+    function truncate(str, maxlength) {
+        if (str.length > maxlength) {
+            return str.slice(0, maxlength - 3) + '...';
+        }
+
+        return str;
     }
 
     function deleteWish (event) {
