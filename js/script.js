@@ -1,9 +1,18 @@
 $(function() {
     var err_flag = false,
         clases = 'col-lg-offset-8 col-md-offset-7 col-sm-offset-6',
-        wishes = [];
+        wishes = [],
+        lsKey = 'wishes',
+        isFetch = false;
+
+    fetch();
 
     document.getElementsByClassName('shade')[0].addEventListener('click', closeEditView);
+
+    if (!window.localStorage) {
+        console.warn('Your browser dosent support localStorage');
+    }
+
     //Add wish form  slider
    $('#slide-form').on('click', function () {
        $('.add-form').slideToggle('slow');
@@ -12,6 +21,26 @@ $(function() {
 
     //submit
    $('button:submit').on('click', {target: true}, onsubmit);
+
+    fetch();
+
+    function fetch () {
+        var i = 0;
+        if (localStorage.getItem(lsKey) != null && localStorage.getItem(lsKey) !== 'null' && !isFetch) {
+            wishes = JSON.parse(localStorage.getItem(lsKey));
+
+            for (i; i < wishes.length; i++) {
+                renderWishEl(wishes[i]);
+            }
+
+            isFetch = true;
+        }
+
+    }
+
+    function push (wishes) {
+        localStorage.setItem(lsKey, JSON.stringify(wishes))
+    }
 
     function onsubmit (event) {
         event.preventDefault();
@@ -108,6 +137,17 @@ $(function() {
 
     function saveWish (wish) {
         console.log('save!');
+
+        var newWishEl = renderWishEl(wish);
+
+        wish.id = generateId();
+        newWishEl.id = wish.id;
+        wishes.push(wish);
+
+        push(wishes);
+    }
+
+    function renderWishEl (wish) {
         var wishContainer = document.getElementById('wish-container'),
             delEl = document.createElement('DIV'),
             editEl = document.createElement('DIV'),
@@ -126,11 +166,13 @@ $(function() {
         newItem.appendChild(document.createTextNode(wish.newWish));
         newItem.className = 'col-lg-2 col-md-3 col-sm-4 col-xs-6 wish';
 
+        if (wish.id) {
+            newItem.id = wish.id;
+        }
+
         wishContainer.insertBefore(newItem, firstDiv);
 
-        wish.id = generateId();
-        newItem.id = wish.id;
-        wishes.push(wish);
+        return newItem;
     }
 
     function deleteWish (event) {
@@ -141,6 +183,7 @@ $(function() {
         for (i; i < wishes.length; i++) {
             if (wishes[i].id === targetItem.id) wishes.splice(i, 1);
         }
+        push(wishes);
         targetItem.parentElement.removeChild(targetItem);
     }
 
@@ -188,6 +231,7 @@ $(function() {
         for (var i = 0; i < wishes.length; i++) {
             if (wishes[i].id === wish.id) wishes[i] = wish;
         }
+        push(wishes);
         closeEditView();
     }
 
