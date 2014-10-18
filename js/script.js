@@ -15,9 +15,9 @@ $(function() {
 
     //Add wish form (slider)
    $('#slide-form').on('click', function () {
-       $('.add-form').slideToggle('slow');
-       testingFillForm();
-   });
+        $('.add-form').slideToggle('slow');
+        //testingFillForm();
+    });
 
     //submit
    $('button:submit').on('click', {target: true}, onsubmit);
@@ -102,7 +102,6 @@ $(function() {
             errors('Вы не указали свой номер телефона !');
             err_flag = false;
         } else {
-//            regexp = /^[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g;
             regexp = /^\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}$/g;
             if (!regexp.test(wish.tele)){
                 errors('Формат № телефона не совпадает с типовым !');
